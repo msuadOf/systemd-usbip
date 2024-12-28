@@ -1,10 +1,8 @@
-sbindir=/usr/sbin
-sysconfdir=/etc
-unitdir=$(sysconfdir)/systemd/system
+INSTALL_DIR=/etc/systemd/system/
 
 UNITS = \
 	usbipd.service \
-	usbip-device@.service
+	usbip-bind@.service
 
 SCRIPTS = \
 	configure-usbip-device.sh \
@@ -12,17 +10,8 @@ SCRIPTS = \
 
 all:
 
-install: install-scripts install-units
-	mkdir -p $(DESTDIR)$(sysconfdir)/usbip-devices
+install: 
+	mkdir -p $(INSTALL_DIR)
+	install -m 755 usbipd.service $(INSTALL_DIR)usbipd.service
+	install -m 755 usbip-bind@.service $(INSTALL_DIR)usbip-bind@.service
 
-install-scripts: $(SCRIPTS)
-	mkdir -p $(DESTDIR)$(sbindir)
-	for s in $(SCRIPTS); do \
-		install -m 755 $$s $(DESTDIR)$(sbindir)/$${s%.sh}; \
-	done
-
-install-units: $(UNITS)
-	mkdir -p $(DESTDIR)$(unitdir)
-	for u in $(UNITS); do \
-		install -m 600 $$u $(DESTDIR)$(unitdir); \
-	done
