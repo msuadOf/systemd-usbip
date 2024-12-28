@@ -1,13 +1,5 @@
 INSTALL_DIR=/etc/systemd/system/
 
-UNITS = \
-	usbipd.service \
-	usbip-bind@.service
-
-SCRIPTS = \
-	configure-usbip-device.sh \
-	remove-usbip-device.sh
-
 all:
 
 install: 

@@ -6,8 +6,8 @@ Wants=network-online.target usbipd.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/sbin/usbip bind --busid %i
-ExecStop=/usr/sbin/usbip unbind --busid %i
+ExecStart=/usr/bin/usbip bind --busid %i
+ExecStop=/usr/bin/usbip unbind --busid %i
 
 [Install]
 WantedBy=multi-user.target
