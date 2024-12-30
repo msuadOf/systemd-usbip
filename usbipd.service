@@ -8,7 +8,9 @@ Type=simple
 Restart=always
 ExecStartPre=/usr/sbin/modprobe usbip-core
 ExecStartPre=/usr/sbin/modprobe usbip-host
+ExecStartPre=/usr/sbin/modprobe vhci-hcd
 ExecStart=/usr/bin/usbipd
+ExecStartPre=/usr/sbin/rmmod vhci-hcd
 ExecStopPost=/usr/sbin/rmmod usbip-host
 ExecStopPost=/usr/sbin/rmmod usbip-core
 
